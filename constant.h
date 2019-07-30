@@ -39,8 +39,14 @@ public:
         return "stat";
     }
 
-    static string upTimePath(){
+    static string upTimePath()
+    {
         return "uptime";
+    }
+
+    static string memInfoPath()
+    {
+        return "meminfo";
     }
 }
 
