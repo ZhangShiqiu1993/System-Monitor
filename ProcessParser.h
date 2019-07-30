@@ -17,6 +17,7 @@
 #include <time.h>
 #include <unistd.h>
 #include "constant.h"
+#include "util.h"
 
 class ProcessParser
 {
@@ -37,3 +38,22 @@ public:
     static string getOsName();
     static std::string printCpuStats(std::vector<std::string> values1, std::vector<std::string> values2);
 };
+
+std::string ProcessParser::getVmSize(std::string pid) {
+    std::string line;
+    std::string name = "VmData";
+    std::string value;
+
+    float result;
+    std::ifstream stream = Util::getStream((Path::basePath() + pid + Path::statusPath()));
+    while (std::getline(stream, line)) {
+        if (line.compare(0, name.size(), name) == 0) {
+            std::istringstream buf(line);
+            std::istream_iterator<string> beg(buf), end;
+            std::vector<std::string> values(beg, end);
+            result = (stof(values[1]) / float(1024 * 1024));
+            break;
+        }
+    }
+    return std::to_string(result);
+}
