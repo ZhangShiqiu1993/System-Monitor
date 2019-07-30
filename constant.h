@@ -33,6 +33,11 @@ public:
     {
         return "/status";
     }
+
+    static string statPath()
+    {
+        return "stat";
+    }
 }
 
 #endif
