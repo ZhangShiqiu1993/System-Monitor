@@ -34,3 +34,12 @@ std::string Util::getProgressBar(std::string percent)
     result += " " + percent.substr(0, 5) + " /100%";
     return result;
 }
+
+std::ifstream Util::getStream(std::string path) 
+{
+    std::ifstream stream(path);
+    if (!stream) {
+        throw std::runtime_error("Non - existing PID");
+    }
+    return stream;
+}
