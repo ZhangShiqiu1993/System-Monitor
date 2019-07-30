@@ -48,6 +48,11 @@ public:
     {
         return "meminfo";
     }
+
+    static string versionPath()
+    {
+        return "version";
+    }
 }
 
 #endif
