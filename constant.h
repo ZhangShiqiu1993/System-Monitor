@@ -24,6 +24,10 @@ public:
         return "/proc/";
     }
 
+    static string cmdPath()
+    {
+        return "/cmdline";
+    }
 }
 
 #endif
