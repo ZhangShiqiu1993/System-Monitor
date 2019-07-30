@@ -28,6 +28,11 @@ public:
     {
         return "/cmdline";
     }
+
+    static string statusPath()
+    {
+        return "/status";
+    }
 }
 
 #endif
