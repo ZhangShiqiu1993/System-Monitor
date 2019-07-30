@@ -1,6 +1,9 @@
 #ifndef PATH_H
 #define PATH_H
 
+#include <string>
+using std::string;
+
 enum CPUStates {
     S_USER = 1,
     S_NICE,
@@ -13,5 +16,14 @@ enum CPUStates {
     S_GUEST,
     S_GUEST_NICE
 };
+
+class Path {
+public:
+    static string basePath()
+    {
+        return "/proc/";
+    }
+
+}
 
 #endif
