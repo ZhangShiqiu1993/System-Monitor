@@ -17,3 +17,20 @@ std::string Util::convertToTime(long int input_seconds)
     std::string result = std::to_string(hours) + ":" + std::to_string(minutes) + ":" + std::to_string(seconds);
     return result;
 }
+
+std::string Util::getProgressBar(std::string percent)
+{
+    std::string result = "0% ";
+    int _size = 50;
+    int boundaries = (stof(percent) / 100) * _size;
+
+    for (int i = 0; i < _size; i++) {
+        if (i <= boundaries) {
+            result += "|";
+        } else {
+            result += " ";
+        }
+    }
+    result += " " + percent.substr(0, 5) + " /100%";
+    return result;
+}
