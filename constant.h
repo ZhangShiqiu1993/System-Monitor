@@ -38,6 +38,10 @@ public:
     {
         return "stat";
     }
+
+    static string upTimePath(){
+        return "uptime";
+    }
 }
 
 #endif
