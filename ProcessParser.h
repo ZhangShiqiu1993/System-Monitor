@@ -321,6 +321,31 @@ string ProcessParser::getOsName()
     return "";
 }
 
+int ProcessParser::getTotalThreads()
+{
+    string line;
+    int result = 0;
+    string name = "Threads";
+    vector<string> _list = ProcessParser::getPidList();
+    for (int i = 0; i < _list.size(); i++)
+    {
+        string pid = _list[i];
+        ifstream stream = Util::getStream((Path::basePath() + pid + Path::statusPath()));
+        while (std::getline(stream, line))
+        {
+            if (line.compare(0, name.size(), name) == 0)
+            {
+                istringstream buf(line);
+                istream_iterator<string> beg(buf), end;
+                vector<string> values(beg, end);
+                result += stoi(values[1]);
+                break;
+            }
+        }
+    }
+    return result;
+}
+
 int ProcessParser::getTotalNumberOfProcesses()
 {
     string line;
