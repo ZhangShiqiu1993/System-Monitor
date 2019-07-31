@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "ProcessParser.h"
 
 using std::vector;
 using std::string;
@@ -25,6 +26,11 @@ private:
 
 public:
     SysInfo() {
+        this->getOtherCores(ProcessParser::getNumberOfCores());
+        this->setLastCpuMeasures();
+        this->setAttributes();
+        this->osName = ProcessParser::getOsName();
+        this->kernelVer = ProcessParser::getSysKernelVersion();
     }
 
     void setAttributes();
