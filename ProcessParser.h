@@ -198,3 +198,21 @@ int ProcessParser::getNumberOfCores()
     }
     return 0;
 }
+
+vector<string> ProcessParser::getSysCpuPercent(string coreNumber)
+{
+    string line;
+    string name = "cpu" + coreNumber;
+    ifstream stream = Util::getStream((Path::basePath() + Path::statPath()));
+    while (std::getline(stream, line))
+    {
+        if (line.compare(0, name.size(), name) == 0)
+        {
+            istringstream buf(line);
+            istream_iterator<string> beg(buf), end;
+            vector<string> values(beg, end);
+            return values;
+        }
+    }
+    return (vector<string>());
+}
