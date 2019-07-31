@@ -300,3 +300,23 @@ string ProcessParser::getSysKernelVersion()
     }
     return "";
 }
+
+string ProcessParser::getOsName()
+{
+    string line;
+    string name = "PRETTY_NAME=";
+
+    ifstream stream = Util::getStream("/etc/os-release");
+    while (std::getline(stream, line))
+    {
+        if (line.compare(0, name.size(), name) == 0)
+        {
+            std::size_t found = line.find("=");
+            found++;
+            string result = line.substr(found);
+            result.erase(std::remove(result.begin(), result.end(), '"'), result.end());
+            return result;
+        }
+    }
+    return "";
+}
