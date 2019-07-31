@@ -217,7 +217,7 @@ vector<string> ProcessParser::getSysCpuPercent(string coreNumber)
     return (vector<string>());
 }
 
-float get_sys_active_cpu_time(vector<string> values)
+float getSysActiveCpuTime(vector<string> values)
 {
     return (stof(values[S_USER]) +
             stof(values[S_NICE]) +
@@ -229,7 +229,15 @@ float get_sys_active_cpu_time(vector<string> values)
             stof(values[S_GUEST_NICE]));
 }
 
-float get_sys_idle_cpu_time(vector<string> values)
+float getSysIdleCpuTime(vector<string> values)
 {
     return (stof(values[S_IDLE]) + stof(values[S_IOWAIT]));
+}
+
+string ProcessParser::printCpuStats(vector<string> values1, vector<string> values2) {
+    float activeTime = getSysActiveCpuTime(values2) - getSysActiveCpuTime(values1);
+    float idleTime = getSysIdleCpuTime(values2) - getSysIdleCpuTime(values1);
+    float totalTime = activeTime + idleTime;
+    float result = 100.0 * (activeTime / totalTime);
+    return to_string(result);
 }
