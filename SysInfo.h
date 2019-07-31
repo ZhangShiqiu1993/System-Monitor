@@ -7,6 +7,7 @@
 
 using std::vector;
 using std::string;
+using std::to_string;
 
 class SysInfo {
 private:
@@ -47,5 +48,55 @@ public:
     void setCpuCoresStats();
     vector<string> getCoresStats() const;
 };
+
+string SysInfo::getCpuPercent() const 
+{
+    return this->cpuPercent;
+}
+
+string SysInfo::getMemPercent() const
+{
+    return to_string(this->memPercent);
+}
+
+string SysInfo::getCpuPercent() const
+{
+    return this->cpuPercent;
+}
+
+long SysInfo::getUpTime() const
+{
+    return this->upTime;
+}
+
+string SysInfo::getKernelVersion() const
+{
+    return this->kernelVer;
+}
+
+string SysInfo::getTotalProc() const
+{
+    return to_string(this->totalProc);
+}
+
+string SysInfo::getRunningProc() const
+{
+    return to_string(this->runningProc);
+}
+
+string SysInfo::getThreads() const
+{
+    return to_string(this->threads);
+}
+
+string SysInfo::getOsName() const
+{
+    return this->osName;
+}
+
+void SysInfo::setLastCpuMeasures()
+{
+    this->lastCpuCoresStats = ProcessParser::getSysCpuPercent();
+}
 
 #endif
