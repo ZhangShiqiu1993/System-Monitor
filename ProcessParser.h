@@ -216,3 +216,20 @@ vector<string> ProcessParser::getSysCpuPercent(string coreNumber)
     }
     return (vector<string>());
 }
+
+float get_sys_active_cpu_time(vector<string> values)
+{
+    return (stof(values[S_USER]) +
+            stof(values[S_NICE]) +
+            stof(values[S_SYSTEM]) +
+            stof(values[S_IRQ]) +
+            stof(values[S_SOFTIRQ]) +
+            stof(values[S_STEAL]) +
+            stof(values[S_GUEST]) +
+            stof(values[S_GUEST_NICE]));
+}
+
+float get_sys_idle_cpu_time(vector<string> values)
+{
+    return (stof(values[S_IDLE]) + stof(values[S_IOWAIT]));
+}
