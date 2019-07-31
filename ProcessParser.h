@@ -22,8 +22,10 @@
 using std::ifstream;
 using std::string;
 using std::vector;
+using std::istringstream;
+using std::istream_iterator;
 
-class ProcessParser
+    class ProcessParser
 {
 public:
     static string getCmd(string pid);
@@ -52,8 +54,8 @@ string ProcessParser::getVmSize(string pid) {
     ifstream stream = Util::getStream((Path::basePath() + pid + Path::statusPath()));
     while (std::getline(stream, line)) {
         if (line.compare(0, name.size(), name) == 0) {
-            std::istringstream buf(line);
-            std::istream_iterator<string> beg(buf), end;
+            istringstream buf(line);
+            istream_iterator<string> beg(buf), end;
             vector<string> values(beg, end);
             result = (stof(values[1]) / float(1024 * 1024));
             break;
