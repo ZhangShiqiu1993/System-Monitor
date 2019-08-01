@@ -140,4 +140,21 @@ void SysInfo::setAttributes()
     this->setCpuCoresStats();
 }
 
+vector<string> SysInfo::getCoresStats() const
+{
+    vector<string> result = vector<string>();
+    for (int i = 0; i < this->coresStats.size(); i++)
+    {
+        string temp = ("cpu" + to_string(i) + ":");
+        float check = stof(this->coresStats[i]);
+        if (!check || this->coresStats[i] == "nan")
+        {
+            return vector<string>();
+        }
+        temp += Util::getProgressBar(this->coresStats[i]);
+        result.push_back(temp);
+    }
+    return result;
+}
+
 #endif
