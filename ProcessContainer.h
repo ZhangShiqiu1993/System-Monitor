@@ -32,5 +32,13 @@ void ProcessContainer::refreshList()
     }
 }
 
+string ProcessContainer::printList()
+{
+    std::string result = "";
+    for (auto i : _list) {
+        result += i.getProcess();
+    }
+    return result;
+}
 
 #endif
