@@ -127,4 +127,17 @@ void SysInfo::setCpuCoresStats()
     this->lastCpuCoresStats = this->currentCpuCoresStats;
 }
 
+void SysInfo::setAttributes()
+{
+    this->memPercent = ProcessParser::getSysRamPercent();
+    this->upTime = ProcessParser::getSysUpTime();
+    this->totalProc = ProcessParser::getTotalNumberOfProcesses();
+    this->runningProc = ProcessParser::getNumberOfRunningProcesses();
+    this->threads = ProcessParser::getTotalThreads();
+    this->currentCpuStats = ProcessParser::getSysCpuPercent();
+    this->cpuPercent = ProcessParser::printCpuStats(this->lastCpuStats, this->currentCpuStats);
+    this->lastCpuStats = this->currentCpuStats;
+    this->setCpuCoresStats();
+}
+
 #endif
