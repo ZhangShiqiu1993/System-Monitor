@@ -96,7 +96,7 @@ string SysInfo::getOsName() const
 
 void SysInfo::setLastCpuMeasures()
 {
-    this->lastCpuCoresStats = ProcessParser::getSysCpuPercent();
+    this->lastCpuStats = ProcessParser::getSysCpuPercent();
 }
 
 #endif
