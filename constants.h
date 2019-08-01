@@ -1,10 +1,8 @@
-#ifndef PATH_H
-#define PATH_H
-
 #include <string>
-using std::string;
+using namespace std;
 
-enum CPUStates {
+enum CPUStates
+{
     S_USER = 1,
     S_NICE,
     S_SYSTEM,
@@ -17,42 +15,36 @@ enum CPUStates {
     S_GUEST_NICE
 };
 
-class Path {
+class Path
+{
+
 public:
     static string basePath()
     {
         return "/proc/";
     }
-
     static string cmdPath()
     {
         return "/cmdline";
     }
-
     static string statusPath()
     {
         return "/status";
     }
-
     static string statPath()
     {
         return "stat";
     }
-
     static string upTimePath()
     {
         return "uptime";
     }
-
     static string memInfoPath()
     {
         return "meminfo";
     }
-
     static string versionPath()
     {
         return "version";
     }
 };
-
-#endif
