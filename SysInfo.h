@@ -99,4 +99,19 @@ void SysInfo::setLastCpuMeasures()
     this->lastCpuStats = ProcessParser::getSysCpuPercent();
 }
 
+void SysInfo::getOtherCores (int _size) 
+{
+    this->coresStats = vector<string>();
+    this->coresStats.resize(_size);
+    this->lastCpuCoresStats = vector<vector<string>>();
+    this->lastCpuCoresStats.resize(_size);
+    this->currentCpuCoresStats = vector<vector<string>>();
+    this->currentCpuCoresStats.resize(_size);
+
+    for (int i = 0; i < _size; i++)
+    {
+        this->lastCpuCoresStats[i] = ProcessParser::getSysCpuPercent(to_string(i));
+    }
+}
+
 #endif
