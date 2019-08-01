@@ -5,7 +5,8 @@
 #include "ProcessParser.h"
 using std::string;
 
-class Process {
+class Process
+{
 private:
     string pid;
     string user;
@@ -15,7 +16,7 @@ private:
     string upTime;
 
 public:
-    Process(string pid) 
+    Process(string pid)
     {
         this->pid = pid;
         this->user = ProcessParser::getProcUser(pid);
