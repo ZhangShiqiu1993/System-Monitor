@@ -22,4 +22,15 @@ public:
     vector<string> getList();
 };
 
+void ProcessContainer::refreshList()
+{
+    vector<string> pids = ProcessParser::getPidList();
+    this->_list.clear();
+    for (auto pid : pids) {
+        Process proc(pid);
+        this->_list.push_back(proc);
+    }
+}
+
+
 #endif
