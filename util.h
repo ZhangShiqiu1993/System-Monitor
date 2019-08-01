@@ -1,7 +1,11 @@
+#ifndef UTIL_H
+#define UTIL_H
+
 #include <string>
 #include <fstream>
 
-class Util {
+class Util
+{
 public:
     static std::string convertToTime(long int input_seconds);
     static std::string getProgressBar(std::string percent);
@@ -24,10 +28,14 @@ std::string Util::getProgressBar(std::string percent)
     int _size = 50;
     int boundaries = (stof(percent) / 100) * _size;
 
-    for (int i = 0; i < _size; i++) {
-        if (i <= boundaries) {
+    for (int i = 0; i < _size; i++)
+    {
+        if (i <= boundaries)
+        {
             result += "|";
-        } else {
+        }
+        else
+        {
             result += " ";
         }
     }
@@ -35,11 +43,14 @@ std::string Util::getProgressBar(std::string percent)
     return result;
 }
 
-std::ifstream Util::getStream(std::string path) 
+std::ifstream Util::getStream(std::string path)
 {
     std::ifstream stream(path);
-    if (!stream) {
+    if (!stream)
+    {
         throw std::runtime_error("Non - existing PID");
     }
     return stream;
 }
+
+#endif
